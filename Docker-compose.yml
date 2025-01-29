@@ -1,0 +1,25 @@
+
+services:
+  fastapi:
+    build:
+      context: ./API  
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./API:/app  
+    networks:
+      - mern-network
+
+  react:
+    build:
+      context: ./smart-agriculture-app  
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - mern-network
+
+networks:
+  mern-network:
+    driver: bridge
