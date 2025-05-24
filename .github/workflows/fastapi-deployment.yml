@@ -55,8 +55,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/fastAPI:latest ./Backend/API
-            docker push ${{ secrets.DOCKER_USERNAME }}/fastAPI:latest
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/fastapi:latest ./Backend/API
+            docker push ${{ secrets.DOCKER_USERNAME }}/fastapi:latest
 
       - name: Render deployment.yaml
         run: |

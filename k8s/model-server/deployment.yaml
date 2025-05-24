@@ -17,16 +17,13 @@ spec:
         image: ${DOCKER_USERNAME}/model-server:latest
         ports:
         - name: inference
-          port: 8080
-          targetPort: 8080
+          containerPort: 8080
           protocol: TCP
         - name: management
-          port: 8081
-          targetPort: 8081
+          containerPort: 8081
           protocol: TCP
         - name: metrics
-          port: 8082
-          targetPort: 8082
+          containerPort: 8082
           protocol: TCP
         env:
         - name: TS_DISABLE_TOKEN_AUTH

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: ${DOCKER_USERNAME}/fastAPI:latest
+          image: ${DOCKER_USERNAME}/fastapi:latest
           ports:
         - containerPort: 9000
         volumeMounts:
