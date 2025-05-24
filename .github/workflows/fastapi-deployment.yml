@@ -63,6 +63,13 @@ jobs:
           export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
           envsubst < k8s/API/deployment.yaml > k8s/API/fastapi-deployment.yaml
 
+      - name: Install KEDA
+        run: kubectl apply -f https://github.com/kedacore/keda/releases/latest/download/keda.yaml
+
+      - name: Wait for KEDA
+        run: |
+          kubectl wait deployment keda-operator --for=condition=Available=True --timeout=60s -n keda
+
       - name: Deploy to GKE
         run: |
           kubectl apply -f k8s/API/fastapi-deployment.yaml
