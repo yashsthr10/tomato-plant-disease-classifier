@@ -61,7 +61,7 @@ jobs:
 
       - name: Wait for KEDA
         run: |
-          kubectl wait deployment keda-operator --for=condition=Available=True --timeout=60s -n keda
+          kubectl wait deployment keda-operator --for=condition=Available=True --timeout=240s -n keda
 
       - name: Deploy to GKE
         run: |
