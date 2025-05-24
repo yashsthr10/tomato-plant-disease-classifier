@@ -1,0 +1,18 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: model-server-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: torchserve 
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.default.svc.cluster.local
+        metricName: http_requests_total
+        threshold: "100"
+        query: |
+          sum(rate(http_requests_total[1m])) by (deployment)

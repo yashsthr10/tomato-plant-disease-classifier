@@ -1,0 +1,54 @@
+name: Prometheus deployment to GKE 
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Backend/prometheus/**'
+
+jobs:
+  deploy:
+    name: Build and Deploy to GKE
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GKE_CREDENTIALS }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT }}
+
+      - name: Configure kubectl
+        run: |
+            gcloud container clusters get-credentials smart-agri-app-cluster \
+            --zone asia-south1-a \
+            --project ${{ secrets.GCP_PROJECT }}
+
+
+      - name: Install GKE Auth Plugin
+        run: |
+          gcloud components install gke-gcloud-auth-plugin --quiet
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Create Prometheus ConfigMap
+        run: |
+          kubectl create configmap prometheus-config \
+          --from-file=prometheus.yml=./Backend/prometheus/prometheus.yml \
+          --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy to GKE
+        run: |
+          kubectl apply -f k8s/prometheus/deployment.yaml
+          kubectl apply -f k8s/prometheus/service.yaml
+
+        env:
+          USE_GKE_GCLOUD_AUTH_PLUGIN: True

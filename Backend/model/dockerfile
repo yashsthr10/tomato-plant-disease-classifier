@@ -1,0 +1,21 @@
+FROM pytorch/torchserve:latest-gpu
+
+# Install torchvision
+RUN pip install torchvision
+
+# Copy files to the correct locations
+COPY model_store/ /home/model-server/model-store/
+COPY model_handler.py /home/model-server/
+COPY index_to_name.json /home/model-server/
+COPY config.properties /home/model-server/config.properties
+
+# Expose the ports
+EXPOSE 8080 8081 8082
+
+# Multiple approaches to disable token auth
+CMD ["torchserve", \
+     "--start", \
+     "--model-store", "/home/model-server/model-store", \
+     "--models", "model=model.mar", \
+     "--ts-config", "/home/model-server/config.properties", \
+     "--disable-token-auth"]

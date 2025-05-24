@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+torch
+prometheus_fastapi_instrumentator
+numpy
+pillow
+python-multipart
+pydantic
+requests
+pydantic
+dotenv
+langchain_groq
+langchain

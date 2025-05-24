@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: torchserve
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: torchserve
+  template:
+    metadata:
+      labels:
+        app: torchserve
+    spec:
+      containers:
+      - name: torchserve
+        image: ${DOCKER_USERNAME}/model-server:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+        - containerPort: 8082
+        env:
+        - name: TS_DISABLE_TOKEN_AUTH
+          value: "true"
+        volumeMounts:
+        - name: model-store
+          mountPath: /home/model-server/model-store
+        - name: config-properties
+          mountPath: /home/model-server/config.properties
+          subPath: config.properties
+        - name: model-handler
+          mountPath: /home/model-server/model_handler.py
+          subPath: model_handler.py
+        - name: index-to-name
+          mountPath: /home/model-server/index_to_name.json
+          subPath: index_to_name.json
+      volumes:
+      - name: model-store
+        persistentVolumeClaim:
+          claimName: model-store-pvc
+      - name: config-properties
+        configMap:
+          name: torchserve-config
+      - name: model-handler
+        configMap:
+          name: torchserve-handler
+      - name: index-to-name
+        configMap:
+          name: torchserve-index

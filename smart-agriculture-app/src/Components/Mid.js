@@ -81,42 +81,21 @@ function Mid({ setPredictedClass, setImageSrc }) {
 
   // using FastApi endpoint to get predictions from the model 
   const predict_btn = async () => {
-    const url = "http://127.0.0.1:8000/predict/";
-
-    const data = [
-      ["Bacterial spot", 0],
-      ["Early blight", 1],
-      ["Late blight", 2],
-      ["Leaf Mold", 3],
-      ["Septoria leaf_spot", 4],
-      ["Spider mites Two-spotted spider mite", 5],
-      ["Target Spot", 6],
-      ["Tomato Yellow Leaf Curl Virus", 7],
-      ["Tomato mosaic virus", 8],
-      ["healthy", 9],
-    ];
-    const indexToClass = Object.fromEntries(
-      data.map(([name, idx]) => [idx, name])
-    );
+    const url = "http://localhost:9000/predict/";
 
     try {
-    
       const blob = await fetch(localimageSrc).then((res) => res.blob());
 
-      
       const formData = new FormData();
       formData.append("file", blob, "image.jpg");
 
       
-      const response = await axios.post(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(url, formData);
 
+      // logging the response data for debuggin
+      console.log(response.data)
       
-      const predictedClass = response.data.predicted_class;
-      let prediction = indexToClass[predictedClass];
+      const prediction = response.data.predicted_class;
       setPredictedClass(prediction);
 
       console.log("Prediction:", prediction);

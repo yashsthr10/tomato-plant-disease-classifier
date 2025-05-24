@@ -1,25 +1,84 @@
+version: '3.8'
 
 services:
   fastapi:
     build:
-      context: ./API  
+      context: ./Backend/API
       dockerfile: Dockerfile
+    container_name: fastapi
     ports:
-      - "8000:8000"
+      - "9000:9000"
     volumes:
-      - ./API:/app  
+      - ./Backend/API:/app
     networks:
       - mern-network
+      - monitoring-net
 
   react:
     build:
-      context: ./smart-agriculture-app  
+      context: ./smart-agriculture-app
       dockerfile: Dockerfile
+    container_name: react  
+    ports:
+      - "3001:3000"  # Frontend on 3001
+    networks:
+      - mern-network
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./backend/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
     ports:
       - "3000:3000"
     networks:
-      - mern-network
+      - monitoring-net
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+  torchserve:
+    build:
+      context: ./Backend/model
+      dockerfile: Dockerfile
+    container_name: model-server
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+      - "8082:8082"
+    environment:
+      # Disable token auth for TorchServe
+      - TS_DISABLE_TOKEN_AUTH=true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    networks:
+      - monitoring-net
+    volumes:
+      # Mount the model_store directory from your model context
+      - ./Backend/model/model_store:/home/model-server/model-store
+      # Mount config and handler files from your model context
+      - ./Backend/model/config.properties:/home/model-server/config.properties:ro
+      - ./Backend/model/model_handler.py:/home/model-server/model_handler.py:ro
+      - ./Backend/model/index_to_name.json:/home/model-server/index_to_name.json:ro
 
 networks:
   mern-network:
     driver: bridge
+  monitoring-net:
+    driver: bridge
+
+volumes:
+  grafana-storage:
+    driver: local

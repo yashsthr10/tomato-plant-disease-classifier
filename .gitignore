@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.ipynb_checkpoints
+
+# Virtual environments
+env/
+venv/
+.env
+.env.*
+
+# PyTorch / TF artifacts
+*.pt
+*.pth
+*.h5
+*.ckpt
+
+# Logs & outputs
+*.log
+*.out
+*.DS_Store
+
+# Node
+node_modules/
+*.lock
+
+# Build artifacts
+dist/
+build/
+
+# VSCode and JetBrains stuff
+.vscode/
+.idea/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+crash.log
+
+# Docker
+*.pid
+*.seed
+*.bak
+*.swp
+.dockerignore
+
+# TorchServe model-store
+model-store/
+
+# Frontend build
+smart-agriculture-app/build/
+
+# Kubernetes
+*.yaml~  # backups
+
+# Misc
+*.zip
+*.tar.gz
+coverage/
+htmlcov/
+
+
+# secrets
+key.json

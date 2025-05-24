@@ -23,12 +23,12 @@ function About() {
         }}
       >
         Our deep learning model has been specifically trained to predict and
-        classify 10 common diseases found in tomato plants. These diseases were
-        carefully selected based on their widespread impact on tomato crop
-        production. The model takes an image of a tomato plant leaf, processes it,
+        classify 38 common diseases found in different plants. These diseases were
+        carefully selected based on their widespread impact on crop
+        production. The model takes an image of a plant leaf, processes it,
         and predicts which disease is likely to affect the plant. Our model helps
         farmers and gardeners quickly identify plant diseases and take necessary
-        action to prevent the spread of infections.
+        action to prevent the spread of infections with the help of AI.
       </p>
       <p
         style={{
@@ -39,9 +39,9 @@ function About() {
           lineHeight: "1.6",
         }}
       >
-        The model is based on a convolutional neural network (CNN), which allows
+        The model is based on a Finetuned resnet50 model, which allows
         it to learn patterns and features from images to make accurate predictions.
-        It classifies the plant diseases into one of the 10 categories, including
+        It classifies the plant diseases into one of the 38 categories, including
         but not limited to common diseases like Tomato Leaf Mold, Early Blight, and
         Fusarium Wilt.
       </p>
@@ -57,9 +57,9 @@ function About() {
           lineHeight: "1.6",
         }}
       >
-        1. **Input Image:** The user provides an image of a tomato plant leaf.<br />
+        1. **Input Image:** The user provides an image of a plant leaf.<br />
         2. **Image Processing:** The model preprocesses the image to extract relevant features.<br />
-        3. **Disease Classification:** The CNN classifies the image into one of the 10 disease categories.<br />
+        3. **Disease Classification:** The Model classifies the image into one of the 38 disease categories.<br />
         4. **Prediction Result:** The model returns the predicted disease and confidence level.
       </p>
     </section>
