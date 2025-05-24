@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'Backend/prometheus/**'
+      - '.github/**'
 
 jobs:
   deploy:

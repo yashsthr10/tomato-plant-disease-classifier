@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'Backend/model/**'
+      - '.github/**'
 
 jobs:
   deploy:
