@@ -57,7 +57,7 @@ jobs:
           envsubst < k8s/model-server/deployment.yaml > k8s/model-server/model-server-deployment.yaml
 
       - name: Install KEDA
-        run: kubectl apply -f https://github.com/kedacore/keda/releases/latest/download/keda.yaml
+        run: kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.10.1/keda-2.10.1.yaml
 
       - name: Wait for KEDA
         run: |
