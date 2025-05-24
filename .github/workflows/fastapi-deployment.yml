@@ -1,4 +1,4 @@
-name: FastAPI deployment to GKE 
+name: FastApi deployment to GKE 
 
 on:
   push:
