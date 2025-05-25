@@ -22,5 +22,4 @@ spec:
           mountPath: /var/lib/grafana
       volumes:
       - name: grafana-storage
-        persistentVolumeClaim:
-          claimName: grafana-pvc
+        emptyDir: {}  

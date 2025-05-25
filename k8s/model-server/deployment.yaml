@@ -42,8 +42,7 @@ spec:
           subPath: index_to_name.json
       volumes:
       - name: model-store
-        persistentVolumeClaim:
-          claimName: model-store-pvc
+        emptyDir: {} 
       - name: config-properties
         configMap:
           name: torchserve-config
