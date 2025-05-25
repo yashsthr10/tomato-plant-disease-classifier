@@ -42,10 +42,10 @@ jobs:
 
       - name: Deploy to GKE
         run: |
+          kubectl apply -f k8s/grafana/storageClass.yaml
+          kubectl apply -f k8s/grafana/grafana-pvc.yaml
           kubectl apply -f k8s/grafana/deployment.yaml
           kubectl apply -f k8s/grafana/service.yaml
-          kubectl apply -f k8s/grafana/grafana-pvc.yaml
-
 
         env:
           USE_GKE_GCLOUD_AUTH_PLUGIN: True
