@@ -85,7 +85,7 @@ export default function Predict({ predictedClass, imageSrc }) {
     <>
       <div className="predcontainer">
         <div>
-          <img src={imageSrc} alt="Predicted" />
+          <img src={imageSrc} alt="Predicted" style={{ width: "300px", height: "auto" }} />
         </div>
         <div className="predTitle">{renderContent()}</div>
       </div>
