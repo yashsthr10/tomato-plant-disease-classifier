@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: model-store-pvc
+  name: grafana-pvc
 spec:
   storageClassName: fast-ssd
   accessModes:
