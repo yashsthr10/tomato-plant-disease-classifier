@@ -1,4 +1,4 @@
-name: Prometheus deployment to GKE 
+name: Prometheus deployment to GCP - GKE
 
 on:
   push:

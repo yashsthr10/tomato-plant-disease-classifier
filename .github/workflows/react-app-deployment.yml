@@ -1,4 +1,4 @@
-name: React App deployment to GKE 
+name: React App deployment to GCP - GKE
 
 on:
   push:

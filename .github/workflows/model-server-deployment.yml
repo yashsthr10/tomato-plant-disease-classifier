@@ -1,4 +1,4 @@
-name: Model-Server deployment to GKE 
+name: Model-Server deployment to GCP - GKE 
 
 on:
   push:
