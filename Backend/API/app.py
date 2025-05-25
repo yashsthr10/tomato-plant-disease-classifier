@@ -40,7 +40,7 @@ def clean_label(text):
 
 
 # TorchServe inference URL
-TORCHSERVE_URL = "http://model-server:8080/predictions/model" # Replace with your model name
+TORCHSERVE_URL = "http://torchserve:8080/predictions/model" # Replace with your model name
 
 @app.post("/predict/")
 async def predict_image(file: UploadFile = File(...)):

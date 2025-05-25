@@ -11,7 +11,7 @@ export default function Predict({ predictedClass, imageSrc }) {
   // console.log(predictedClass)
 
   async function handle_askAi() {
-  const llm_url = "http://127.0.0.1:9000/askAI"; // adjust if port or path differs
+  const llm_url = "http://fastapi:9000/askAI"; // adjust if port or path differs
 
   setLoading(true);
   setShowButton(false);

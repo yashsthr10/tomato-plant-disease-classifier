@@ -81,7 +81,7 @@ function Mid({ setPredictedClass, setImageSrc }) {
 
   // using FastApi endpoint to get predictions from the model 
   const predict_btn = async () => {
-    const url = "http://localhost:9000/predict/";
+    const url = "http://fastapi:9000/predict/";
 
     try {
       const blob = await fetch(localimageSrc).then((res) => res.blob());
