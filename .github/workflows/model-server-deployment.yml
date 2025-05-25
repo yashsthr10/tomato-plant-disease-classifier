@@ -65,9 +65,9 @@ jobs:
 
       - name: Applying TorchServe configs
         run: |
-          kubectl create configmap torchserve-config --from-file=./Backend/model/config.properties
-          kubectl create configmap torchserve-handler --from-file=./Backend/model/model_handler.py
-          kubectl create configmap torchserve-index --from-file=./Backend/model/index_to_name.json
+          kubectl create configmap torchserve-config --from-file=./Backend/model/config.properties --dry-run=client -o yaml | kubectl apply -f -
+          kubectl create configmap torchserve-handler --from-file=./Backend/model/model_handler.py --dry-run=client -o yaml | kubectl apply -f -
+          kubectl create configmap torchserve-index --from-file=./Backend/model/index_to_name.json --dry-run=client -o yaml | kubectl apply -f -
 
 
       - name: Deploy to GKE
