@@ -67,7 +67,7 @@ jobs:
         run: |
           kubectl apply -f k8s/model-server/model-server-deployment.yaml
           kubectl apply -f k8s/model-server/service.yaml
-          kubectl apply -f model-store-pvc.yaml
+          kubectl apply -f k8s/model-server/model-store-pvc.yaml
           kubectl apply -f k8s/model-server/keda-model-server-scaledObject.yaml
 
         env:
