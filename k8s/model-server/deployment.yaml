@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: torchserve
-        image: ${DOCKER_USERNAME}/model-server:latest
+        image: ${DOCKER_USERNAME}/model-server:latest  # Make sure this image includes model.mar!
         ports:
         - name: inference
           containerPort: 8080
@@ -29,8 +29,6 @@ spec:
         - name: TS_DISABLE_TOKEN_AUTH
           value: "true"
         volumeMounts:
-        - name: model-store
-          mountPath: /home/model-server/model-store
         - name: config-properties
           mountPath: /home/model-server/config.properties
           subPath: config.properties
@@ -41,8 +39,6 @@ spec:
           mountPath: /home/model-server/index_to_name.json
           subPath: index_to_name.json
       volumes:
-      - name: model-store
-        emptyDir: {} 
       - name: config-properties
         configMap:
           name: torchserve-config
