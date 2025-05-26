@@ -17,20 +17,11 @@ spec:
           image: ${DOCKER_USERNAME}/fastapi:latest
           ports:
             - containerPort: 9000
-          volumeMounts:
-            - mountPath: /app
-              name: fastapi-code
           env:
             - name: GROQ_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: groq-api-key
                   key: GROQ_API_KEY
-
-      volumes:
-      - name: fastapi-code
-        hostPath:
-          path: /tmp/fastapi-code 
-          type: DirectoryOrCreate
 
       
