@@ -30,7 +30,7 @@ spec:
       volumes:
       - name: fastapi-code
         hostPath:
-          path: /tmp/fastapi-code  # Replace with appropriate mount
+          path: /tmp/fastapi-code 
           type: DirectoryOrCreate
 
       

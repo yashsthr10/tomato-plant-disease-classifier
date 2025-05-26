@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: torchserve
-        image: ${DOCKER_USERNAME}/model-server:latest  # Make sure this image includes model.mar!
+        image: ${DOCKER_USERNAME}/model-server:latest  
         ports:
         - name: inference
           containerPort: 8080

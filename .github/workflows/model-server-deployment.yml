@@ -1,4 +1,4 @@
-name: fixed Model-Server deployment to GCP - GKE 
+name: TorchServe deployment to GKE 
 
 on:
   push:

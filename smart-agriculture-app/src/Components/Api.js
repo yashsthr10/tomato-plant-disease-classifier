@@ -20,7 +20,7 @@ export default function Api() {
 
   return (
     <div className="api-container">
-      <h1>Try out our API for free:</h1>
+      <h1>Try API key for local deployment:</h1>
       <div className="api-box">
         <span>{apiLink}</span>
         <button onClick={copyToClipboard}>

@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-torch
 prometheus_fastapi_instrumentator
 numpy
 pillow

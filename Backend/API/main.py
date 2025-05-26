@@ -18,7 +18,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Lock down in prod
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -34,13 +34,13 @@ def clean_label(text):
     text = re.sub(r'___|__|_', ' ', text)
     text = re.sub(r'[\(\)]', '', text)
     
-    # Fix double spaces and capitalize nicely
+    # Fix double spaces and capitalize
     text = re.sub(r'\s+', ' ', text).strip()
     return text.title()
 
 
 # TorchServe inference URL
-TORCHSERVE_URL = "http://34.47.155.25:8080/predictions/model" 
+TORCHSERVE_URL = "http://torchserve:8080/predictions/model" 
 
 @app.post("/predict/")
 async def predict_image(file: UploadFile = File(...)):

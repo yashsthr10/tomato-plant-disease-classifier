@@ -29,7 +29,7 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
   }
 
-  initial_node_count = 2
+  initial_node_count = 1
 }
 
 data "google_client_config" "default" {}
