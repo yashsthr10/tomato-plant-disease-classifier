@@ -197,4 +197,3 @@ MIT License. Feel free to fork, contribute, or deploy this on your farm. 🚜
 Built with caffeine and cluster debugging by **Yash Suthar** 🤖
 
 Ready to scale AI from my village to valley!
->>>>>>> 3edf800 (�Full infra + CI/CD: GKE deployments, KEDA, Prometheus/Grafana, FastAPI model API with secret injection, model serving and langchain LLM integration)
